@@ -8,10 +8,10 @@
   },
   {
     "id": 2,
-    "title": "Mountain",
-    "description": "Upload your photo to images folder and update this file",
+    "title": "Mountain Landscape",
+    "description": "Placeholder text",
     "category": "landscape",
-    "src": "images.jpg"
+    "src": "image.jpg"
   },
   {
     "id": 3,
