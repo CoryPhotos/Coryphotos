@@ -4,14 +4,14 @@
     "title": "Your Photo Here",
     "description": "Upload your photo to images folder and update this file",
     "category": "portrait",
-    "src": "images/portfolio-1.jpg"
+    "src": "images/portfolio-.jpg"
   },
   {
     "id": 2,
-    "title": "Your Photo Here",
+    "title": "Mountain",
     "description": "Upload your photo to images folder and update this file",
     "category": "landscape",
-    "src": "images/portfolio-2.jpg"
+    "src": "images.jpg"
   },
   {
     "id": 3,
