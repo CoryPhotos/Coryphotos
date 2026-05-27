@@ -6,73 +6,24 @@ const ADMIN_PASSWORD = 'coryadmin2024'; // Change this to your desired password
 let photos = [];
 let currentPhotoIndex = 0;
 let isAdmin = false;
-
-// Sample photos for initial display
-const samplePhotos = [
-    {
-        id: 1,
-        title: 'Golden Hour Portrait',
-        description: 'Natural light portrait session',
-        category: 'portrait',
-        src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80'
-    },
-    {
-        id: 2,
-        title: 'Mountain Vista',
-        description: 'Sunrise over the mountains',
-        category: 'landscape',
-        src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80'
-    },
-    {
-        id: 3,
-        title: 'Wedding Celebration',
-        description: 'Joyful moments captured',
-        category: 'event',
-        src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80'
-    },
-    {
-        id: 4,
-        title: 'Forest Path',
-        description: 'Autumn colors in the woods',
-        category: 'nature',
-        src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80'
-    },
-    {
-        id: 5,
-        title: 'Urban Life',
-        description: 'Street photography downtown',
-        category: 'street',
-        src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80'
-    },
-    {
-        id: 6,
-        title: 'Product Showcase',
-        description: 'Commercial product photography',
-        category: 'commercial',
-        src: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80'
-    },
-    {
-        id: 7,
-        title: 'Elegant Portrait',
-        description: 'Studio portrait session',
-        category: 'portrait',
-        src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80'
-    },
-    {
-        id: 8,
-        title: 'Coastal Sunset',
-        description: 'Ocean views at dusk',
-        category: 'landscape',
-        src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80'
-    },
-    {
-        id: 9,
-        title: 'Corporate Event',
-        description: 'Professional conference coverage',
-        category: 'event',
-        src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80'
-    }
-];
+let siteSettings = {
+    heroTitle: 'Capturing Life\'s Beautiful Moments',
+    heroSubtitle: 'Professional photography that tells your unique story',
+    aboutTitle: 'About Cory',
+    aboutLead: 'Passionate photographer capturing moments that matter',
+    aboutText1: 'With over 10 years of experience behind the lens, I specialize in creating stunning visual narratives that resonate with emotion and authenticity.',
+    aboutText2: 'Whether it\'s an intimate portrait session, a grand landscape, or a momentous event, I bring dedication and creativity to every shoot.',
+    stat1Number: '500+',
+    stat1Label: 'Projects Completed',
+    stat2Number: '10+',
+    stat2Label: 'Years Experience',
+    stat3Number: '300+',
+    stat3Label: 'Happy Clients',
+    location: 'Los Angeles, CA',
+    email: 'hello@coryphotos.com',
+    phone: '+1 (555) 123-4567',
+    footerTagline: 'Capturing moments, creating memories'
+};
 
 // ===================================
 // DOM Elements
@@ -81,8 +32,10 @@ const navbar = document.querySelector('.navbar');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const adminBtn = document.getElementById('adminBtn');
+const settingsBtn = document.getElementById('settingsBtn');
 const loginModal = document.getElementById('loginModal');
 const uploadModal = document.getElementById('uploadModal');
+const settingsModal = document.getElementById('settingsModal');
 const loginForm = document.getElementById('loginForm');
 const uploadForm = document.getElementById('uploadForm');
 const gallery = document.getElementById('gallery');
@@ -98,6 +51,7 @@ const contactForm = document.getElementById('contactForm');
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
     loadPhotos();
+    loadSiteSettings();
     renderGallery('all');
     setupEventListeners();
     checkAdminStatus();
@@ -111,13 +65,83 @@ function loadPhotos() {
     if (storedPhotos) {
         photos = JSON.parse(storedPhotos);
     } else {
-        photos = [...samplePhotos];
+        photos = [];
         savePhotos();
     }
 }
 
 function savePhotos() {
     localStorage.setItem('coryphotos_gallery', JSON.stringify(photos));
+}
+
+function loadSiteSettings() {
+    const storedSettings = localStorage.getItem('coryphotos_settings');
+    if (storedSettings) {
+        siteSettings = JSON.parse(storedSettings);
+    }
+    applySiteSettings();
+}
+
+function saveSiteSettings() {
+    localStorage.setItem('coryphotos_settings', JSON.stringify(siteSettings));
+}
+
+function applySiteSettings() {
+    // Hero section
+    document.querySelector('.hero h1').innerHTML = siteSettings.heroTitle.replace("Beautiful Moments", '<span class="highlight">Beautiful Moments</span>');
+    document.querySelector('.hero p').textContent = siteSettings.heroSubtitle;
+    
+    // About section
+    document.querySelector('.about-text h2').textContent = siteSettings.aboutTitle;
+    document.querySelector('.about-text .lead').textContent = siteSettings.aboutLead;
+    const aboutParagraphs = document.querySelectorAll('.about-text p:not(.lead)');
+    if (aboutParagraphs.length >= 2) {
+        aboutParagraphs[0].textContent = siteSettings.aboutText1;
+        aboutParagraphs[1].textContent = siteSettings.aboutText2;
+    }
+    
+    // Stats
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const statLabels = document.querySelectorAll('.stat-label');
+    if (statNumbers.length >= 3 && statLabels.length >= 3) {
+        statNumbers[0].textContent = siteSettings.stat1Number;
+        statLabels[0].textContent = siteSettings.stat1Label;
+        statNumbers[1].textContent = siteSettings.stat2Number;
+        statLabels[1].textContent = siteSettings.stat2Label;
+        statNumbers[2].textContent = siteSettings.stat3Number;
+        statLabels[2].textContent = siteSettings.stat3Label;
+    }
+    
+    // Contact info
+    const infoItems = document.querySelectorAll('.info-text p');
+    if (infoItems.length >= 3) {
+        infoItems[0].textContent = siteSettings.location;
+        infoItems[1].textContent = siteSettings.email;
+        infoItems[2].textContent = siteSettings.phone;
+    }
+    
+    // Footer
+    document.querySelector('.footer-logo p').textContent = siteSettings.footerTagline;
+}
+
+// Populate settings form with current values
+function populateSettingsForm() {
+    document.getElementById('settingHeroTitle').value = siteSettings.heroTitle;
+    document.getElementById('settingHeroSubtitle').value = siteSettings.heroSubtitle;
+    document.getElementById('settingAboutTitle').value = siteSettings.aboutTitle;
+    document.getElementById('settingAboutLead').value = siteSettings.aboutLead;
+    document.getElementById('settingAboutText1').value = siteSettings.aboutText1;
+    document.getElementById('settingAboutText2').value = siteSettings.aboutText2;
+    document.getElementById('settingStat1Number').value = siteSettings.stat1Number;
+    document.getElementById('settingStat1Label').value = siteSettings.stat1Label;
+    document.getElementById('settingStat2Number').value = siteSettings.stat2Number;
+    document.getElementById('settingStat2Label').value = siteSettings.stat2Label;
+    document.getElementById('settingStat3Number').value = siteSettings.stat3Number;
+    document.getElementById('settingStat3Label').value = siteSettings.stat3Label;
+    document.getElementById('settingLocation').value = siteSettings.location;
+    document.getElementById('settingEmail').value = siteSettings.email;
+    document.getElementById('settingPhone').value = siteSettings.phone;
+    document.getElementById('settingFooterTagline').value = siteSettings.footerTagline;
 }
 
 function renderGallery(filter = 'all') {
@@ -168,6 +192,7 @@ function updateAdminUI() {
     adminBtn.textContent = 'Upload Photo';
     adminBtn.classList.remove('admin-btn');
     adminBtn.classList.add('upload-btn-direct');
+    settingsBtn.style.display = 'block';
 }
 
 function logoutAdmin() {
@@ -176,6 +201,7 @@ function logoutAdmin() {
     adminBtn.textContent = 'Admin Login';
     adminBtn.classList.add('admin-btn');
     adminBtn.classList.remove('upload-btn-direct');
+    settingsBtn.style.display = 'none';
 }
 
 // ===================================
@@ -191,6 +217,13 @@ function setupEventListeners() {
     // Admin button click
     adminBtn.addEventListener('click', handleAdminClick);
     
+    // Settings button click
+    settingsBtn.addEventListener('click', () => {
+        if (isAdmin) {
+            openModal(settingsModal);
+        }
+    });
+    
     // Modal close buttons
     document.querySelectorAll('.close').forEach(closeBtn => {
         closeBtn.addEventListener('click', closeModal);
@@ -201,6 +234,12 @@ function setupEventListeners() {
     
     // Upload form submit
     uploadForm.addEventListener('submit', handleUpload);
+    
+    // Settings form submit
+    const settingsForm = document.getElementById('settingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', handleSettingsSave);
+    }
     
     // Filter buttons
     filterButtons.forEach(btn => {
@@ -262,6 +301,7 @@ function handleLogin(e) {
         closeModal(loginModal);
         document.getElementById('adminPassword').value = '';
         document.getElementById('loginError').textContent = '';
+        populateSettingsForm();
         openModal(uploadModal);
     } else {
         document.getElementById('loginError').textContent = 'Incorrect password. Please try again.';
@@ -305,6 +345,33 @@ function handleUpload(e) {
         
         reader.readAsDataURL(file);
     }
+}
+
+function handleSettingsSave(e) {
+    e.preventDefault();
+    
+    siteSettings.heroTitle = document.getElementById('settingHeroTitle').value;
+    siteSettings.heroSubtitle = document.getElementById('settingHeroSubtitle').value;
+    siteSettings.aboutTitle = document.getElementById('settingAboutTitle').value;
+    siteSettings.aboutLead = document.getElementById('settingAboutLead').value;
+    siteSettings.aboutText1 = document.getElementById('settingAboutText1').value;
+    siteSettings.aboutText2 = document.getElementById('settingAboutText2').value;
+    siteSettings.stat1Number = document.getElementById('settingStat1Number').value;
+    siteSettings.stat1Label = document.getElementById('settingStat1Label').value;
+    siteSettings.stat2Number = document.getElementById('settingStat2Number').value;
+    siteSettings.stat2Label = document.getElementById('settingStat2Label').value;
+    siteSettings.stat3Number = document.getElementById('settingStat3Number').value;
+    siteSettings.stat3Label = document.getElementById('settingStat3Label').value;
+    siteSettings.location = document.getElementById('settingLocation').value;
+    siteSettings.email = document.getElementById('settingEmail').value;
+    siteSettings.phone = document.getElementById('settingPhone').value;
+    siteSettings.footerTagline = document.getElementById('settingFooterTagline').value;
+    
+    saveSiteSettings();
+    applySiteSettings();
+    
+    closeModal(settingsModal);
+    alert('Site settings saved successfully!');
 }
 
 function handleFilter(e) {

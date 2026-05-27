@@ -162,6 +162,40 @@ button {
     color: var(--bg-primary);
 }
 
+.settings-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 10px;
+}
+
+.settings-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.upload-btn-direct {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.upload-btn-direct:hover {
+    background: var(--accent-gold-hover);
+    transform: translateY(-2px);
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -731,6 +765,24 @@ button {
     max-width: 500px;
 }
 
+.settings-modal {
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.settings-modal h3 {
+    font-size: 18px;
+    color: var(--accent-gold);
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-modal h3:first-child {
+    margin-top: 0;
+}
+
 .close {
     position: absolute;
     top: 20px;
@@ -749,6 +801,18 @@ button {
     font-size: 32px;
     margin-bottom: 30px;
     text-align: center;
+}
+
+.modal-content h3 {
+    font-size: 18px;
+    color: var(--accent-gold);
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-content h3:first-child {
+    margin-top: 0;
 }
 
 .error-message {
