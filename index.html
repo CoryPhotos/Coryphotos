@@ -6,7 +6,7 @@
     <title>CoryPhotos | Professional Photography</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,9 +19,12 @@
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button id="adminBtn" class="admin-btn">Admin Login</button></li>
-                <li><button id="settingsBtn" class="settings-btn" style="display:none;">Edit Site</button></li>
             </ul>
+            <div class="nav-actions">
+                <button id="adminBtn" class="btn-login">Sign In</button>
+                <button id="logoutBtn" class="btn-logout" style="display:none;">Sign Out</button>
+                <button id="settingsBtn" class="btn-edit" style="display:none;">Edit Site</button>
+            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -34,13 +37,16 @@
     <div id="loginModal" class="modal">
         <div class="modal-content login-modal">
             <span class="close">&times;</span>
-            <h2>Admin Access</h2>
+            <div class="modal-header">
+                <h2>Admin Access</h2>
+                <p>Enter your credentials to continue</p>
+            </div>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="adminPassword">Enter Password</label>
+                    <label for="adminPassword">Password</label>
                     <input type="password" id="adminPassword" required placeholder="Enter admin password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Sign In</button>
                 <p id="loginError" class="error-message"></p>
             </form>
         </div>
@@ -187,6 +193,33 @@
             <span></span>
         </div>
     </section>
+
+    <!-- Image Upload Modal (Admin Only - Hidden) -->
+    <div id="imageUploadModal" class="modal" style="display:none;">
+        <div class="modal-content upload-modal">
+            <span class="close">&times;</span>
+            <h2>Add Stock Photo</h2>
+            <form id="imageUploadForm">
+                <div class="form-group">
+                    <label for="imageTitle">Title</label>
+                    <input type="text" id="imageTitle" required placeholder="Photo title">
+                </div>
+                <div class="form-group">
+                    <label for="imageCategory">Category</label>
+                    <select id="imageCategory" required>
+                        <option value="">Select category</option>
+                        <option value="portrait">Portrait</option>
+                        <option value="landscape">Landscape</option>
+                        <option value="event">Event</option>
+                        <option value="nature">Nature</option>
+                        <option value="street">Street</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Photo</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">

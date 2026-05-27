@@ -32,12 +32,15 @@ const navbar = document.querySelector('.navbar');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const adminBtn = document.getElementById('adminBtn');
+const logoutBtn = document.getElementById('logoutBtn');
 const settingsBtn = document.getElementById('settingsBtn');
 const loginModal = document.getElementById('loginModal');
 const uploadModal = document.getElementById('uploadModal');
 const settingsModal = document.getElementById('settingsModal');
+const imageUploadModal = document.getElementById('imageUploadModal');
 const loginForm = document.getElementById('loginForm');
 const uploadForm = document.getElementById('uploadForm');
+const imageUploadForm = document.getElementById('imageUploadForm');
 const gallery = document.getElementById('gallery');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const lightbox = document.getElementById('lightbox');
@@ -189,18 +192,18 @@ function checkAdminStatus() {
 }
 
 function updateAdminUI() {
-    adminBtn.textContent = 'Upload Photo';
-    adminBtn.classList.remove('admin-btn');
-    adminBtn.classList.add('upload-btn-direct');
+    adminBtn.textContent = 'Sign Out';
+    adminBtn.style.display = 'none';
+    logoutBtn.style.display = 'block';
     settingsBtn.style.display = 'block';
 }
 
 function logoutAdmin() {
     isAdmin = false;
     localStorage.removeItem('coryphotos_admin');
-    adminBtn.textContent = 'Admin Login';
-    adminBtn.classList.add('admin-btn');
-    adminBtn.classList.remove('upload-btn-direct');
+    adminBtn.textContent = 'Sign In';
+    adminBtn.style.display = 'block';
+    logoutBtn.style.display = 'none';
     settingsBtn.style.display = 'none';
 }
 
@@ -214,8 +217,23 @@ function setupEventListeners() {
     // Mobile menu toggle
     hamburger.addEventListener('click', toggleMobileMenu);
     
-    // Admin button click
-    adminBtn.addEventListener('click', handleAdminClick);
+    // Logout button click - now uses the dedicated Sign Out button
+    logoutBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to sign out?')) {
+            logoutAdmin();
+        }
+    });
+    
+    // Also allow clicking the Sign In button when logged in to logout
+    adminBtn.addEventListener('click', function() {
+        if (isAdmin) {
+            if (confirm('Are you sure you want to sign out?')) {
+                logoutAdmin();
+            }
+        } else {
+            openModal(loginModal);
+        }
+    });
     
     // Settings button click
     settingsBtn.addEventListener('click', () => {
@@ -234,6 +252,9 @@ function setupEventListeners() {
     
     // Upload form submit
     uploadForm.addEventListener('submit', handleUpload);
+    
+    // Image upload form submit (for adding stock photos)
+    imageUploadForm.addEventListener('submit', handleImageUpload);
     
     // Settings form submit
     const settingsForm = document.getElementById('settingsForm');
@@ -284,7 +305,7 @@ function toggleMobileMenu() {
 
 function handleAdminClick() {
     if (isAdmin) {
-        openModal(uploadModal);
+        openModal(imageUploadModal);
     } else {
         openModal(loginModal);
     }
@@ -345,6 +366,48 @@ function handleUpload(e) {
         
         reader.readAsDataURL(file);
     }
+}
+
+// Handle image upload from stock photos (using placeholder images)
+function handleImageUpload(e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('imageTitle').value;
+    const category = document.getElementById('imageCategory').value;
+    
+    // Generate a professional placeholder image using gradients
+    const colors = [
+        ['1a1a2e', '16213e'],
+        ['2c3e50', '3498db'],
+        ['1e3c72', '2a5298'],
+        ['134e5e', '71b280'],
+        ['42275a', '734b6e'],
+        ['1f4037', '99f2c8']
+    ];
+    
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    const gradientUrl = `https://via.placeholder.com/800x600/${randomColor[0]}/${randomColor[1]}?text=${encodeURIComponent(title)}`;
+    
+    const newPhoto = {
+        id: Date.now(),
+        title: title,
+        description: `Professional ${category} photography`,
+        category: category,
+        src: gradientUrl
+    };
+    
+    photos.unshift(newPhoto);
+    savePhotos();
+    renderGallery('all');
+    
+    // Reset active filter
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector('[data-filter="all"]').classList.add('active');
+    
+    closeModal(imageUploadModal);
+    imageUploadForm.reset();
+    
+    alert('Photo added successfully!');
 }
 
 function handleSettingsSave(e) {
@@ -493,18 +556,3 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
 }
-
-// Add logout functionality when clicking admin button while logged in
-adminBtn.addEventListener('dblclick', (e) => {
-    if (isAdmin) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to logout?')) {
-            logoutAdmin();
-        }
-    }
-});
-
-// Add hint for logout on page load
-console.log('%c CoryPhotos Admin Panel ', 'background: #d4af37; color: #0a0a0a; font-size: 16px; font-weight: bold; padding: 10px;');
-console.log('%c To logout: Double-click the "Upload Photo" button ', 'background: #1a1a1a; color: #d4af37; font-size: 12px; padding: 5px;');
-console.log('%c Default password: coryadmin2024 ', 'background: #1a1a1a; color: #ff4444; font-size: 12px; padding: 5px;');
