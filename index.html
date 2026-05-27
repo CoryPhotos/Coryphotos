@@ -20,11 +20,6 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="nav-actions">
-                <button id="adminBtn" class="btn-login">Sign In</button>
-                <button id="logoutBtn" class="btn-logout" style="display:none;">Sign Out</button>
-                <button id="settingsBtn" class="btn-edit" style="display:none;">Edit Site</button>
-            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -32,154 +27,6 @@
             </div>
         </div>
     </nav>
-
-    <!-- Admin Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content login-modal">
-            <span class="close">&times;</span>
-            <div class="modal-header">
-                <h2>Admin Access</h2>
-                <p>Enter your credentials to continue</p>
-            </div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="adminPassword">Password</label>
-                    <input type="password" id="adminPassword" required placeholder="Enter admin password">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
-                <p id="loginError" class="error-message"></p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Upload Modal (Admin Only) -->
-    <div id="uploadModal" class="modal">
-        <div class="modal-content upload-modal">
-            <span class="close">&times;</span>
-            <h2>Upload New Photo</h2>
-            <form id="uploadForm">
-                <div class="form-group">
-                    <label for="photoFile">Select Photo</label>
-                    <div class="file-drop-area">
-                        <input type="file" id="photoFile" accept="image/*" required>
-                        <p>Drag & drop or click to select</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="photoTitle">Title</label>
-                    <input type="text" id="photoTitle" required placeholder="Photo title">
-                </div>
-                <div class="form-group">
-                    <label for="photoDescription">Description</label>
-                    <textarea id="photoDescription" rows="3" placeholder="Brief description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="photoCategory">Category</label>
-                    <select id="photoCategory" required>
-                        <option value="">Select category</option>
-                        <option value="portrait">Portrait</option>
-                        <option value="landscape">Landscape</option>
-                        <option value="event">Event</option>
-                        <option value="nature">Nature</option>
-                        <option value="street">Street</option>
-                        <option value="commercial">Commercial</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Upload Photo</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Settings Modal (Admin Only) -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content settings-modal">
-            <span class="close">&times;</span>
-            <h2>Edit Site Details</h2>
-            <form id="settingsForm">
-                <h3>Hero Section</h3>
-                <div class="form-group">
-                    <label for="settingHeroTitle">Hero Title</label>
-                    <input type="text" id="settingHeroTitle" required placeholder="Main headline">
-                </div>
-                <div class="form-group">
-                    <label for="settingHeroSubtitle">Hero Subtitle</label>
-                    <input type="text" id="settingHeroSubtitle" placeholder="Subtitle text">
-                </div>
-
-                <h3>About Section</h3>
-                <div class="form-group">
-                    <label for="settingAboutTitle">About Title</label>
-                    <input type="text" id="settingAboutTitle" required placeholder="About section title">
-                </div>
-                <div class="form-group">
-                    <label for="settingAboutLead">About Lead Text</label>
-                    <input type="text" id="settingAboutLead" placeholder="Lead/subtitle text">
-                </div>
-                <div class="form-group">
-                    <label for="settingAboutText1">About Paragraph 1</label>
-                    <textarea id="settingAboutText1" rows="3" placeholder="First paragraph"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="settingAboutText2">About Paragraph 2</label>
-                    <textarea id="settingAboutText2" rows="3" placeholder="Second paragraph"></textarea>
-                </div>
-
-                <h3>Statistics</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="settingStat1Number">Stat 1 Number</label>
-                        <input type="text" id="settingStat1Number" placeholder="e.g., 500+">
-                    </div>
-                    <div class="form-group">
-                        <label for="settingStat1Label">Stat 1 Label</label>
-                        <input type="text" id="settingStat1Label" placeholder="e.g., Projects Completed">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="settingStat2Number">Stat 2 Number</label>
-                        <input type="text" id="settingStat2Number" placeholder="e.g., 10+">
-                    </div>
-                    <div class="form-group">
-                        <label for="settingStat2Label">Stat 2 Label</label>
-                        <input type="text" id="settingStat2Label" placeholder="e.g., Years Experience">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="settingStat3Number">Stat 3 Number</label>
-                        <input type="text" id="settingStat3Number" placeholder="e.g., 300+">
-                    </div>
-                    <div class="form-group">
-                        <label for="settingStat3Label">Stat 3 Label</label>
-                        <input type="text" id="settingStat3Label" placeholder="e.g., Happy Clients">
-                    </div>
-                </div>
-
-                <h3>Contact Information</h3>
-                <div class="form-group">
-                    <label for="settingLocation">Location</label>
-                    <input type="text" id="settingLocation" placeholder="Your location">
-                </div>
-                <div class="form-group">
-                    <label for="settingEmail">Email</label>
-                    <input type="email" id="settingEmail" placeholder="Your email">
-                </div>
-                <div class="form-group">
-                    <label for="settingPhone">Phone</label>
-                    <input type="tel" id="settingPhone" placeholder="Your phone number">
-                </div>
-
-                <h3>Footer</h3>
-                <div class="form-group">
-                    <label for="settingFooterTagline">Footer Tagline</label>
-                    <input type="text" id="settingFooterTagline" placeholder="Footer tagline">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Save Settings</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -193,33 +40,6 @@
             <span></span>
         </div>
     </section>
-
-    <!-- Image Upload Modal (Admin Only - Hidden) -->
-    <div id="imageUploadModal" class="modal" style="display:none;">
-        <div class="modal-content upload-modal">
-            <span class="close">&times;</span>
-            <h2>Add Stock Photo</h2>
-            <form id="imageUploadForm">
-                <div class="form-group">
-                    <label for="imageTitle">Title</label>
-                    <input type="text" id="imageTitle" required placeholder="Photo title">
-                </div>
-                <div class="form-group">
-                    <label for="imageCategory">Category</label>
-                    <select id="imageCategory" required>
-                        <option value="">Select category</option>
-                        <option value="portrait">Portrait</option>
-                        <option value="landscape">Landscape</option>
-                        <option value="event">Event</option>
-                        <option value="nature">Nature</option>
-                        <option value="street">Street</option>
-                        <option value="commercial">Commercial</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary">Add Photo</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
@@ -240,7 +60,7 @@
             </div>
 
             <div class="gallery" id="gallery">
-                <!-- Photos will be dynamically loaded here -->
+                <!-- Photos are loaded from photos.json -->
             </div>
         </div>
     </section>
@@ -250,7 +70,8 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
-                    <div class="image-placeholder">
+                    <img src="images/photographer.jpg" alt="Cory - Photographer" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" style="display:none;">
                         <span>Photographer</span>
                     </div>
                 </div>
