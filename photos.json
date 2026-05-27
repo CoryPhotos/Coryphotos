@@ -1,44 +1,44 @@
 [
   {
     "id": 1,
-    "title": "Mountain Sunrise",
-    "description": "Golden hour light illuminating mountain peaks",
-    "category": "landscape",
-    "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
+    "category": "portrait",
+    "src": "images/portfolio-1.jpg"
   },
   {
     "id": 2,
-    "title": "Urban Portrait",
-    "description": "Professional headshot in urban setting",
-    "category": "portrait",
-    "src": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
+    "category": "landscape",
+    "src": "images/portfolio-2.jpg"
   },
   {
     "id": 3,
-    "title": "Forest Path",
-    "description": "Serene walking trail through autumn forest",
-    "category": "nature",
-    "src": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
+    "category": "event",
+    "src": "images/portfolio-3.jpg"
   },
   {
     "id": 4,
-    "title": "Wedding Celebration",
-    "description": "Joyful moments from a beautiful wedding day",
-    "category": "event",
-    "src": "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
+    "category": "nature",
+    "src": "images/portfolio-4.jpg"
   },
   {
     "id": 5,
-    "title": "City Streets",
-    "description": "Candid moments captured in the bustling city",
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
     "category": "street",
-    "src": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80"
+    "src": "images/portfolio-5.jpg"
   },
   {
     "id": 6,
-    "title": "Product Showcase",
-    "description": "Clean commercial photography for brands",
+    "title": "Your Photo Here",
+    "description": "Upload your photo to images folder and update this file",
     "category": "commercial",
-    "src": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80"
+    "src": "images/portfolio-6.jpg"
   }
 ]
