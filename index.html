@@ -20,6 +20,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><button id="adminBtn" class="admin-btn">Admin Login</button></li>
+                <li><button id="settingsBtn" class="settings-btn" style="display:none;">Edit Site</button></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -79,6 +80,97 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Upload Photo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Modal (Admin Only) -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content settings-modal">
+            <span class="close">&times;</span>
+            <h2>Edit Site Details</h2>
+            <form id="settingsForm">
+                <h3>Hero Section</h3>
+                <div class="form-group">
+                    <label for="settingHeroTitle">Hero Title</label>
+                    <input type="text" id="settingHeroTitle" required placeholder="Main headline">
+                </div>
+                <div class="form-group">
+                    <label for="settingHeroSubtitle">Hero Subtitle</label>
+                    <input type="text" id="settingHeroSubtitle" placeholder="Subtitle text">
+                </div>
+
+                <h3>About Section</h3>
+                <div class="form-group">
+                    <label for="settingAboutTitle">About Title</label>
+                    <input type="text" id="settingAboutTitle" required placeholder="About section title">
+                </div>
+                <div class="form-group">
+                    <label for="settingAboutLead">About Lead Text</label>
+                    <input type="text" id="settingAboutLead" placeholder="Lead/subtitle text">
+                </div>
+                <div class="form-group">
+                    <label for="settingAboutText1">About Paragraph 1</label>
+                    <textarea id="settingAboutText1" rows="3" placeholder="First paragraph"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="settingAboutText2">About Paragraph 2</label>
+                    <textarea id="settingAboutText2" rows="3" placeholder="Second paragraph"></textarea>
+                </div>
+
+                <h3>Statistics</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="settingStat1Number">Stat 1 Number</label>
+                        <input type="text" id="settingStat1Number" placeholder="e.g., 500+">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingStat1Label">Stat 1 Label</label>
+                        <input type="text" id="settingStat1Label" placeholder="e.g., Projects Completed">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="settingStat2Number">Stat 2 Number</label>
+                        <input type="text" id="settingStat2Number" placeholder="e.g., 10+">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingStat2Label">Stat 2 Label</label>
+                        <input type="text" id="settingStat2Label" placeholder="e.g., Years Experience">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="settingStat3Number">Stat 3 Number</label>
+                        <input type="text" id="settingStat3Number" placeholder="e.g., 300+">
+                    </div>
+                    <div class="form-group">
+                        <label for="settingStat3Label">Stat 3 Label</label>
+                        <input type="text" id="settingStat3Label" placeholder="e.g., Happy Clients">
+                    </div>
+                </div>
+
+                <h3>Contact Information</h3>
+                <div class="form-group">
+                    <label for="settingLocation">Location</label>
+                    <input type="text" id="settingLocation" placeholder="Your location">
+                </div>
+                <div class="form-group">
+                    <label for="settingEmail">Email</label>
+                    <input type="email" id="settingEmail" placeholder="Your email">
+                </div>
+                <div class="form-group">
+                    <label for="settingPhone">Phone</label>
+                    <input type="tel" id="settingPhone" placeholder="Your phone number">
+                </div>
+
+                <h3>Footer</h3>
+                <div class="form-group">
+                    <label for="settingFooterTagline">Footer Tagline</label>
+                    <input type="text" id="settingFooterTagline" placeholder="Footer tagline">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Settings</button>
             </form>
         </div>
     </div>
